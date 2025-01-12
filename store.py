@@ -20,7 +20,12 @@ class Store:
         return total_quantity
 
     def get_all_products(self):
-        return self.all_products
+        result = []
+        for i in range(len(self.all_products)):
+            product = self.all_products[i]
+            result.append(f"{i + 1}. {product.name}, Price: ${product.price}, Quantity: {product.get_quantity()}")
+        return result
+
 
     def order(self, shopping_list):
         """Gets a list of tuples, where each tuple has 2 items:
