@@ -3,6 +3,7 @@ import products
 class Store:
     def __init__(self, all_products = None):
         self.all_products = all_products if all_products is not None else []
+        print(all_products)
 
     def add_product(self, product):
         self.all_products.append(product)
@@ -33,7 +34,13 @@ class Store:
         Buys the products and returns the total price of the order."""
         total_price = 0
 
-        for product, quantity in shopping_list:
+        for product_id, quantity in shopping_list:
+            if product_id > len(self.all_products):
+                print("Not a valid input")
+                continue
+            else:
+                product = self.all_products[product_id - 1]
+
             if product not in self.all_products:
                 print ("Product not in list")
                 continue

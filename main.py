@@ -7,7 +7,7 @@ product_list = [products.Product("MacBook Air M2", price=1450, quantity=100),
 
 best_buy = store.Store(product_list)
 
-def start(store):
+def start():
     while True:
         print("Store Menu:")
         print("----------")
@@ -39,11 +39,35 @@ def show_total_amount():
     print (f"Total of {number_of_items_in_store} items in store.")
 
 
-def make_an_order():
-    products_in_store = best_buy.get_all_products()
+def order_inputs():
+    inputs_from_user = []
+    print("When you want to finish order, enter empty text.")
+    while True:
+        input_1 = input("Which product # do you want? ")
+        if not input_1:
+            break
+        input_2 = input("What amount do you want? ")
+        if not input_2:
+            break
+        if not input_2.isdigit():
+            print("Error adding product")
+            continue
+        if not input_2.isdigit():
+            print("Error adding product")
+            continue
 
-    print(best_buy.order([(products_in_store[0], 1), (products_in_store[1], 2)]))
+        inputs_from_user.append((int(input_1), int(input_2)))
+
+    return inputs_from_user
+
+def make_an_order():
+    tuples_for_orderid_and_number = order_inputs()
+    #print(tuples_for_orderid_and_number)
+    #for item_id, number_of_items in tuples_for_orderid_and_number:
+    #print(best_buy.order([(products_in_store[0], 1), (products_in_store[1], 2)]))
+    total_price = best_buy.order(tuples_for_orderid_and_number)
+    print(f"Amount to be paid: {total_price}")
 
 
 if __name__ == "__main__":
-    start(best_buy)
+    start()
