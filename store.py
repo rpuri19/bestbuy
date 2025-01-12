@@ -1,5 +1,3 @@
-import products
-
 class Store:
     def __init__(self, all_products = None):
         self.all_products = all_products if all_products is not None else []
@@ -36,10 +34,11 @@ class Store:
 
         for product_id, quantity in shopping_list:
             if product_id > len(self.all_products):
-                print("Not a valid input")
+                print("Not all product # entered valid. Please check ")
                 continue
             else:
                 product = self.all_products[product_id - 1]
+                print("Product added to list!\n")
 
             if product not in self.all_products:
                 print ("Product not in list")
@@ -51,13 +50,8 @@ class Store:
                 print("Insufficient stock.")
                 continue
             total_price += product.buy(quantity)
-        return total_price
-
-"""
-bose = products.Product("Bose QuietComfort Earbuds", price=250, quantity=500)
-mac = products.Product("MacBook Air M2", price=1450, quantity=100)
-store = Store([bose, mac])
-print (store.get_all_products())
-price = store.order([(bose, 5), (mac, 30), (bose, 10)])
-print(f"Order cost: {price} dollars.")
-"""
+            if total_price:
+                print(f"Order made! Amount to be paid: {total_price}\n")
+            else:
+                continue
+        #return total_price

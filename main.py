@@ -62,11 +62,8 @@ def order_inputs():
 
 def make_an_order():
     tuples_for_orderid_and_number = order_inputs()
-    #print(tuples_for_orderid_and_number)
-    #for item_id, number_of_items in tuples_for_orderid_and_number:
-    #print(best_buy.order([(products_in_store[0], 1), (products_in_store[1], 2)]))
-    total_price = best_buy.order(tuples_for_orderid_and_number)
-    print(f"Amount to be paid: {total_price}")
+    best_buy.order(tuples_for_orderid_and_number)
+
 
 
 if __name__ == "__main__":
