@@ -1,9 +1,5 @@
 class Product:
     def __init__(self, name, price, quantity):
-        self.name = name
-        self.price = price
-        self.quantity = quantity
-        self.active = True
 
         if not name or not isinstance(name, str):
             raise ValueError ("Please enter a Name")
@@ -12,6 +8,13 @@ class Product:
         if quantity < 0:
             raise ValueError ("Quantity cannot be negative")
 
+
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+        if quantity > 0:
+            self.active = True
+
     def get_quantity(self):
         return self.quantity
 
@@ -19,6 +22,12 @@ class Product:
         if quantity < 0:
             raise ValueError("Quantity can not be less than 0 ")
         self.quantity = quantity
+
+        if self.quantity == 0:
+            self.deactivate()
+        else:
+            self.activate()
+
 
     def is_active(self):
         return self.active
@@ -43,6 +52,6 @@ class Product:
         if quantity > self.quantity:
             raise ValueError ("Not enough quantity available")
         total_price = self.price * quantity
-        new_quantity = self.quantity -quantity
+        new_quantity = self.quantity - quantity
         self.set_quantity(new_quantity)
         return total_price

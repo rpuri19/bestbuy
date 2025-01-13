@@ -37,7 +37,6 @@ class Store:
                 continue
             else:
                 product = self.all_products[product_id - 1]
-                print("Product added to list!\n")
 
             if product not in self.all_products:
                 print ("Product not in list")
@@ -49,8 +48,5 @@ class Store:
                 print("Insufficient stock.")
                 continue
             total_price += product.buy(quantity)
-            if total_price:
-                print(f"Order made! Amount to be paid: {total_price}\n")
-            else:
-                continue
-        #return total_price
+
+        return total_price

@@ -1,11 +1,6 @@
 import products
 import store
-product_list = [products.Product("MacBook Air M2", price=1450, quantity=100),
-                products.Product("Bose QuietComfort Earbuds", price=250, quantity=500),
-                products.Product("Google Pixel 7", price=500, quantity=250),
-                ]
 
-best_buy = store.Store(product_list)
 def menu_display():
     menu = {
         1: "List all products in store",
@@ -20,27 +15,35 @@ def menu_display():
 
 
 def start():
+
+    product_list = [products.Product("MacBook Air M2", price=1450, quantity=100),
+                    products.Product("Bose QuietComfort Earbuds", price=250, quantity=500),
+                    products.Product("Google Pixel 7", price=500, quantity=250),
+                    ]
+
+    best_buy = store.Store(product_list)
+
     while True:
         menu_display()
         user_input = input("Please choose a number: ")
 
         if user_input == "1":
-            list_all_products()
+            list_all_products(best_buy)
         elif user_input == "2":
-            show_total_amount()
+            show_total_amount(best_buy)
         elif user_input =="3":
-            make_an_order()
+            make_an_order(best_buy)
         elif user_input == "4":
             break
         else:
             print("Invalid Input")
 
-def list_all_products():
+def list_all_products(best_buy):
     for items in best_buy.get_all_products():
         print(items)
 
 
-def show_total_amount():
+def show_total_amount(best_buy):
     number_of_items_in_store = best_buy.get_total_quantity()
     print (f"Total of {number_of_items_in_store} items in store.")
 
@@ -63,9 +66,13 @@ def order_inputs():
 
     return inputs_from_user
 
-def make_an_order():
+def make_an_order(best_buy):
     tuples_for_orderid_and_number = order_inputs()
-    best_buy.order(tuples_for_orderid_and_number)
+    try:
+        total_price = best_buy.order(tuples_for_orderid_and_number)
+        print(f"\nAmount to be paid: {total_price}\n")
+    except ValueError:
+        print("Error accepting order. Please retry.")
 
 
 
