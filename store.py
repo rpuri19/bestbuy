@@ -1,7 +1,6 @@
 class Store:
     def __init__(self, all_products = None):
         self.all_products = all_products if all_products is not None else []
-        print(all_products)
 
     def add_product(self, product):
         self.all_products.append(product)

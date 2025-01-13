@@ -6,16 +6,22 @@ product_list = [products.Product("MacBook Air M2", price=1450, quantity=100),
                 ]
 
 best_buy = store.Store(product_list)
+def menu_display():
+    menu = {
+        1: "List all products in store",
+        2: "Show total amount",
+        3: "Make an Order",
+        4: "Quit"
+    }
+    print("Store Menu:")
+    print("----------")
+    for key, value in menu.items():
+        print(f"{key} : {value}")
+
 
 def start():
     while True:
-        print("Store Menu:")
-        print("----------")
-        print("1: List all products in store")
-        print("2: Show total amount")
-        print("3: Make an Order")
-        print("4: Quit")
-
+        menu_display()
         user_input = input("Please choose a number: ")
 
         if user_input == "1":
