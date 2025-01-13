@@ -18,11 +18,10 @@ class Store:
         return total_quantity
 
     def get_all_products(self):
-        result = []
         for i in range(len(self.all_products)):
             product = self.all_products[i]
-            result.append(f"{i + 1}. {product.name}, Price: ${product.price}, Quantity: {product.get_quantity()}")
-        return result
+            print(f"{i+1}: {product.name}, Price = {product.price}, Quantity = {product.quantity}")
+
 
 
     def order(self, shopping_list):

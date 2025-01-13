@@ -39,8 +39,7 @@ def start():
             print("Invalid Input")
 
 def list_all_products(best_buy):
-    for items in best_buy.get_all_products():
-        print(items)
+    best_buy.get_all_products()
 
 
 def show_total_amount(best_buy):
