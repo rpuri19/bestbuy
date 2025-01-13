@@ -58,9 +58,6 @@ def order_inputs():
         if not input_2.isdigit():
             print("Error adding product")
             continue
-        if not input_2.isdigit():
-            print("Error adding product")
-            continue
 
         inputs_from_user.append((int(input_1), int(input_2)))
 
