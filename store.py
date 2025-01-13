@@ -33,20 +33,15 @@ class Store:
 
         for product_id, quantity in shopping_list:
             if product_id > len(self.all_products):
-                print("Not all product # entered valid. Please check ")
-                continue
+                return "Not all product # entered valid. Please check "
             else:
                 product = self.all_products[product_id - 1]
 
             if product not in self.all_products:
-                print ("Product not in list")
-                continue
+                return "Product not in list"
             if not product.is_active():
-                print ("Product not available.")
-                continue
+                return "Product not available."
             if product.get_quantity() < quantity:
-                print("Insufficient stock.")
-                continue
+                return "Insufficient stock."
             total_price += product.buy(quantity)
-
         return total_price

@@ -55,11 +55,14 @@ def order_inputs():
         input_1 = input("Which product # do you want? ")
         if not input_1:
             break
+        if not input_1.isdigit():
+            print("Product # should be a number.")
+            continue
         input_2 = input("What amount do you want? ")
         if not input_2:
             break
         if not input_2.isdigit():
-            print("Error adding product")
+            print("Amount should be a number")
             continue
 
         inputs_from_user.append((int(input_1), int(input_2)))
@@ -68,12 +71,12 @@ def order_inputs():
 
 def make_an_order(best_buy):
     tuples_for_orderid_and_number = order_inputs()
+
     try:
         total_price = best_buy.order(tuples_for_orderid_and_number)
-        print(f"\nAmount to be paid: {total_price}\n")
+        print(f"\nMessage / Total Amount: {total_price}\n")
     except ValueError:
         print("Error accepting order. Please retry.")
-
 
 
 if __name__ == "__main__":
