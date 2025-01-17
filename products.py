@@ -16,7 +16,7 @@ class Product:
             self.active = True
 
     def get_quantity(self):
-        return self.quantity
+        return float(self.quantity)
 
     def set_quantity(self, quantity):
         if quantity < 0:
