@@ -45,8 +45,10 @@ def list_all_products(best_buy):
     """
     Fetches and displays all products currently in the store.
     """
-    best_buy.get_all_products()
+    list_of_items = best_buy.get_all_products()
 
+    for i in range(len(list_of_items)):
+        print(list_of_items[i])
 
 def show_total_amount(best_buy):
     """

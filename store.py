@@ -18,9 +18,13 @@ class Store:
         return total_quantity
 
     def get_all_products(self):
+        list_of_products = []
         for i in range(len(self.all_products)):
-            product = self.all_products[i]
-            print(f"{i+1}: {product.name}, Price = {product.price}, Quantity = {product.quantity}")
+            product_id = self.all_products[i]
+            product= f"{i+1}. {product_id .name}, Price = {product_id.price}, Quantity = {product_id.quantity}"
+
+            list_of_products.append(product)
+        return list_of_products
 
 
 
@@ -31,16 +35,16 @@ class Store:
         total_price = 0
 
         for product_id, quantity in shopping_list:
-            if product_id > len(self.all_products):
-                return "Not all product # entered valid. Please check "
+            if not product_id < len(self.all_products):
+                raise ValueError ("Not all product # entered valid. Please check ")
             else:
                 product = self.all_products[product_id - 1]
 
             if product not in self.all_products:
-                return "Product not in list"
+                raise ValueError ("Product not in list")
             if not product.is_active():
-                return "Product not available."
+                raise ValueError ("Product not available.")
             if product.get_quantity() < quantity:
-                return "Insufficient stock."
+                raise ValueError ("Insufficient stock.")
             total_price += product.buy(quantity)
         return total_price
