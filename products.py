@@ -15,6 +15,9 @@ class Product:
         if quantity > 0:
             self.active = True
 
+    def __str__(self):
+        return f"Name: {self.name}, Price: ${self.price:.2f}, Quantity: {self.quantity}, Active: {self.active}"
+
     def get_quantity(self):
         return float(self.quantity)
 
@@ -27,7 +30,6 @@ class Product:
             self.deactivate()
         else:
             self.activate()
-
 
     def is_active(self):
         return self.active

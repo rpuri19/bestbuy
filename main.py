@@ -18,13 +18,12 @@ def menu_display():
 
 
 def start():
-
-    product_list = [products.Product("MacBook Air M2", price=1450, quantity=100),
-                    products.Product("Bose QuietComfort Earbuds", price=250, quantity=500),
-                    products.Product("Google Pixel 7", price=500, quantity=250),
-                    ]
-
-    best_buy = store.Store(product_list)
+    product_list = [
+        products.Product("MacBook Air M2", price=1450, quantity=100),
+        products.Product("Bose QuietComfort Earbuds", price=250, quantity=500),
+        products.Product("Google Pixel 7", price=500, quantity=250),
+    ]
+    best_buy = store.Store(product_list)  # Initialize store with list of products
 
     while True:
         menu_display()
@@ -34,27 +33,28 @@ def start():
             list_all_products(best_buy)
         elif user_input == "2":
             show_total_amount(best_buy)
-        elif user_input =="3":
+        elif user_input == "3":
             make_an_order(best_buy)
         elif user_input == "4":
             break
         else:
             print("Invalid Input")
 
-def list_all_products(best_buy):
+
+def list_all_products(store_list):
     """
     Fetches and displays all products currently in the store.
     """
-    list_of_items = best_buy.get_all_products()
+    list_of_items = store_list.get_all_products()
 
-    for i in range(len(list_of_items)):
-        print(list_of_items[i])
+    for index, product in enumerate(list_of_items):
+        print(f"{index + 1}. {product}")
 
-def show_total_amount(best_buy):
+def show_total_amount(store_list):
     """
     Displays the total quantity of all items available in the store.
     """
-    number_of_items_in_store = best_buy.get_total_quantity()
+    number_of_items_in_store = store_list.get_total_quantity()
     print (f"Total of {number_of_items_in_store} items in store.")
 
 
@@ -66,20 +66,20 @@ def order_inputs():
     inputs_from_user = []
     print("When you want to finish order, enter empty text.")
     while True:
-        input_1 = input("Which product # do you want? ")
-        if not input_1:
+        product_id = input("Which product # do you want? ")
+        if not product_id:
             break
-        if not input_1.isdigit():
+        if not product_id.isdigit():
             print("Product # should be a number.")
             continue
-        input_2 = input("What amount do you want? ")
-        if not input_2:
+        number_of_items = input("What amount do you want? ")
+        if not number_of_items:
             break
-        if not input_2.isdigit():
+        if not number_of_items.isdigit():
             print("Amount should be a number")
             continue
 
-        inputs_from_user.append((int(input_1), int(input_2)))
+        inputs_from_user.append((int(product_id), int(number_of_items)))
 
     return inputs_from_user
 

@@ -1,6 +1,10 @@
+from products import Product
 class Store:
-    def __init__(self, all_products = None):
-        self.all_products = all_products if all_products is not None else []
+    all_products = []
+    def __init__(self, all_products):
+        if not all(isinstance(product, Product) for product in all_products):
+            raise ValueError("All items in all_products must be Product instances.")
+        self.all_products = all_products
 
     def add_product(self, product):
         self.all_products.append(product)
@@ -17,16 +21,12 @@ class Store:
             total_quantity += product.get_quantity()
         return total_quantity
 
-    def get_all_products(self):
+    def get_all_products(self) -> list[Product]:
         list_of_products = []
-        for i in range(len(self.all_products)):
-            product_id = self.all_products[i]
-            product= f"{i+1}. {product_id .name}, Price = {product_id.price}, Quantity = {product_id.quantity}"
-
-            list_of_products.append(product)
+        for product in self.all_products:
+            if product.is_active():
+                list_of_products.append(product)
         return list_of_products
-
-
 
     def order(self, shopping_list):
         """Gets a list of tuples, where each tuple has 2 items:
@@ -35,7 +35,7 @@ class Store:
         total_price = 0
 
         for product_id, quantity in shopping_list:
-            if not product_id < len(self.all_products):
+            if product_id > len(self.all_products):
                 raise ValueError ("Not all product # entered valid. Please check ")
             else:
                 product = self.all_products[product_id - 1]
